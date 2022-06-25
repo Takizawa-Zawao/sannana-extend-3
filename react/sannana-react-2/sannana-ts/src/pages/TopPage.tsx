@@ -3,6 +3,7 @@ import Header_01 from '../components/headers/Header_01';
 import Head_01 from '../components/heads/Head_01'
 import NewGuestLink from '../components/bodies/NewGuestLink';
 import CheckGuestLink from '../components/bodies/CheckGuestLink';
+import '../css/style.css';
 
 class TopPage extends React.Component{
     render(): React.ReactNode {
