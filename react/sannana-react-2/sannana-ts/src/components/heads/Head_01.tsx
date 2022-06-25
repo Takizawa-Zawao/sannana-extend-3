@@ -12,7 +12,6 @@ class Head_01 extends React.Component<Props> {
                 <title>{this.props.PageTitle}</title>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width" />
-                <link rel="stylesheet" href="./css/style.css" />
             </Helmet>
         );
     };
