@@ -37,19 +37,19 @@ class ReservationCheckBody extends React.Component<Props, State>{
         );
     }
     
-    buttonClick01(): void{
-        this.setState(state => ({
+    buttonClick01 = () => {
+        this.setState({
             additionalForm01: <AdditionalForm place="mail_form" />,
             additionalForm02: <div></div>
-        }));
-        this.render();
+        });
+        return this.render();
     }
 
-    buttonClick02(): void{
-        this.setState(state => ({
+    buttonClick02 = () => {
+        this.setState({
             additionalForm01: <div></div>,
             additionalForm02: <AdditionalForm place="id_form" />
-        }));
+        });
         this.render();
     }
 
