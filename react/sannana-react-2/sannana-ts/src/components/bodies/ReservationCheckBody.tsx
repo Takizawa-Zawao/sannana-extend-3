@@ -20,8 +20,6 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm02: <div id='additionalForm02'></div>
         };
 
-        alert(this.state.additionalForm01);
-
         return (
             <div id='ReservationCheckBody'>
                 {this.explanation}
@@ -40,18 +38,18 @@ class ReservationCheckBody extends React.Component<Props, State>{
     }
     
     buttonClick01(): void{
-        this.setState({
+        this.setState(state => ({
             additionalForm01: <AdditionalForm place="mail_form" />,
             additionalForm02: <div></div>
-        });
+        }));
         this.render();
     }
 
     buttonClick02(): void{
-        this.setState({
+        this.setState(state => ({
             additionalForm01: <div></div>,
             additionalForm02: <AdditionalForm place="id_form" />
-        });
+        }));
         this.render();
     }
 
