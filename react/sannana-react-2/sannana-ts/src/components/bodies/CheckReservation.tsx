@@ -1,7 +1,7 @@
 import React from "react";
-import ReservationCheckBody from "../components/bodies/ReservationCheckBody";
-import Header_01 from "../components/headers/Header_01";
-import Header_02 from "../components/headers/Header_02";
+import ReservationCheckBody from "./ReservationCheckBody";
+import Header_01 from "../headers/Header_01";
+import Header_02 from "../headers/Header_02";
 
 class CheckReservation extends React.Component{
     render(): React.ReactNode {
