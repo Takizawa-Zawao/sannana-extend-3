@@ -17,7 +17,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
     render(): React.ReactNode {
         this.setState({
             additionalForm01: <div id='additionalForm01'></div>,
-            additionalForm02: <div id='additionalForm02'></div>,
+            additionalForm02: <div id='additionalForm02'></div>
         });
 
         return (
