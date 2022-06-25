@@ -15,10 +15,10 @@ class ReservationCheckBody extends React.Component<Props, State>{
     explanation: React.ReactNode = this.props.explanation == undefined ? <p></p> : <p>{this.props.explanation}</p>;
 
     render(): React.ReactNode {
-        this.setState({
+        this.state = {
             additionalForm01: <div id='additionalForm01'></div>,
             additionalForm02: <div id='additionalForm02'></div>
-        });
+        };
 
         alert(this.state.additionalForm01);
 

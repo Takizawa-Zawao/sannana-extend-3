@@ -34,9 +34,10 @@ class AdditionalForm extends React.Component<Props, State>{
                 placeHolder: "0000000"
             }
         }
-        this.setState({
-            propDict: dict
-        });
+        this.state = {
+            propDict: dict,
+            targetDict: this.state.propDict[this.props.place]
+        };
         this.setState({
             targetDict: this.state.propDict[this.props.place]
         })
