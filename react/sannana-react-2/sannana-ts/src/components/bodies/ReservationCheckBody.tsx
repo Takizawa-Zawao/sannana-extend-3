@@ -39,18 +39,24 @@ class ReservationCheckBody extends React.Component<Props, State>{
     
     buttonClick01 = () => {
         this.setState({
-            additionalForm01: <AdditionalForm place="mail_form" />,
+            additionalForm01: this.createAdditionalForm("mail_form"),
             additionalForm02: <div></div>
         });
         alert("01");
+        return;
     }
 
     buttonClick02 = () => {
         this.setState({
             additionalForm01: <div></div>,
-            additionalForm02: <AdditionalForm place="id_form" />
+            additionalForm02: this.createAdditionalForm("id_form")
         });
         alert("02");
+        return;
+    }
+
+    createAdditionalForm(place: string):React.ReactNode{
+        return <AdditionalForm place={place} />
     }
 
 
