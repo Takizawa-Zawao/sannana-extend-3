@@ -19,6 +19,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: <div id='additionalForm01'></div>,
             additionalForm02: <div id='additionalForm02'></div>
         };
+        alert(typeof(this.state.additionalForm01));
 
         return (
             <div id='ReservationCheckBody'>
