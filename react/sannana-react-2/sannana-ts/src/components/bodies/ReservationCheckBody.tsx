@@ -13,14 +13,16 @@ type State = {
 class ReservationCheckBody extends React.Component<Props, State>{
     nextURL: string = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check";
     explanation: React.ReactNode = this.props.explanation == undefined ? <p></p> : <p>{this.props.explanation}</p>;
-
-    render(): React.ReactNode {
+    constructor(props: Props, state: State){
+        super(props);
         this.state = {
             additionalForm01: <div id='additionalForm01'></div>,
             additionalForm02: <div id='additionalForm02'></div>
         };
-        alert(typeof(this.state.additionalForm01));
+    }
 
+
+    render(): React.ReactNode {
         return (
             <div id='ReservationCheckBody'>
                 {this.explanation}
@@ -43,7 +45,6 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: this.createAdditionalForm("mail_form"),
             additionalForm02: <div></div>
         });
-        alert(typeof(this.state.additionalForm01));
         return;
     }
 
@@ -52,7 +53,6 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: <div></div>,
             additionalForm02: this.createAdditionalForm("id_form")
         });
-        alert(typeof(this.state.additionalForm02));
         return;
     }
 
