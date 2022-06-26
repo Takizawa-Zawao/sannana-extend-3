@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sannana-extend-3/static/css/main.a72b9c3a.css",
-    "main.js": "/sannana-extend-3/static/js/main.2a205432.js",
+    "main.js": "/sannana-extend-3/static/js/main.d7250b19.js",
     "static/js/787.e4ddfaaa.chunk.js": "/sannana-extend-3/static/js/787.e4ddfaaa.chunk.js",
     "static/media/logo.svg": "/sannana-extend-3/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/sannana-extend-3/index.html",
     "main.a72b9c3a.css.map": "/sannana-extend-3/static/css/main.a72b9c3a.css.map",
-    "main.2a205432.js.map": "/sannana-extend-3/static/js/main.2a205432.js.map",
+    "main.d7250b19.js.map": "/sannana-extend-3/static/js/main.d7250b19.js.map",
     "787.e4ddfaaa.chunk.js.map": "/sannana-extend-3/static/js/787.e4ddfaaa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a72b9c3a.css",
-    "static/js/main.2a205432.js"
+    "static/js/main.d7250b19.js"
   ]
 }
