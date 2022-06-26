@@ -21,7 +21,6 @@ type State = {
 
 class AdditionalForm extends React.Component<Props, State>{
     render(): React.ReactNode {
-        alert("render");
         const dict: PropDictionary = {
             "mail_form": {
                 inputType: "email",
@@ -38,8 +37,6 @@ class AdditionalForm extends React.Component<Props, State>{
             propDict: dict,
             targetDict: dict[this.props.place]
         };
-
-        alert(this.state.targetDict.message);
 
         return(
             <p>
