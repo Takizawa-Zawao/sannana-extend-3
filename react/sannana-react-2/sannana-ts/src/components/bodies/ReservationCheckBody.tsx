@@ -42,6 +42,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: <AdditionalForm place="mail_form" />,
             additionalForm02: <div></div>
         });
+        alert("01");
     }
 
     buttonClick02 = () => {
@@ -49,6 +50,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: <div></div>,
             additionalForm02: <AdditionalForm place="id_form" />
         });
+        alert("02");
     }
 
 
