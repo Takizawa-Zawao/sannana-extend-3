@@ -42,7 +42,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: this.createAdditionalForm("mail_form"),
             additionalForm02: <div></div>
         });
-        alert("01");
+        alert(this.state.additionalForm01?.toString);
         return;
     }
 
@@ -51,7 +51,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
             additionalForm01: <div></div>,
             additionalForm02: this.createAdditionalForm("id_form")
         });
-        alert("02");
+        alert(this.state.additionalForm02?.toString);
         return;
     }
 
