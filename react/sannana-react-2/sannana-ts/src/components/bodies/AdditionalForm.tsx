@@ -1,5 +1,4 @@
 import React from "react";
-import { addEmitHelper } from "typescript";
 
 interface Values {
     inputType: string,
@@ -37,11 +36,8 @@ class AdditionalForm extends React.Component<Props, State>{
         }
         this.state = {
             propDict: dict,
-            targetDict: this.state.propDict[this.props.place]
+            targetDict: dict[this.props.place]
         };
-        this.setState({
-            targetDict: this.state.propDict[this.props.place]
-        })
 
         alert(this.state.targetDict.message);
 
