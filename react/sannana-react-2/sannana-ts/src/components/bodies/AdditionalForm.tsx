@@ -42,6 +42,8 @@ class AdditionalForm extends React.Component<Props, State>{
             targetDict: this.state.propDict[this.props.place]
         })
 
+        alert(this.state.targetDict.message);
+
         return(
             <p>
                 <p>

@@ -38,7 +38,6 @@ class ReservationCheckBody extends React.Component<Props, State>{
     }
     
     buttonClick01 = () => {
-        alert("01");
         this.setState({
             additionalForm01: <AdditionalForm place="mail_form" />,
             additionalForm02: <div></div>
@@ -46,7 +45,6 @@ class ReservationCheckBody extends React.Component<Props, State>{
     }
 
     buttonClick02 = () => {
-        alert("02");
         this.setState({
             additionalForm01: <div></div>,
             additionalForm02: <AdditionalForm place="id_form" />
