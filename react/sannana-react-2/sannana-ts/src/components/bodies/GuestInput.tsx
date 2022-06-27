@@ -16,7 +16,7 @@ type State = {
 
 
 class GuestInput extends React.Component<Props, State>{
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             inputLabel: this.props.inputLabel,
@@ -30,7 +30,7 @@ class GuestInput extends React.Component<Props, State>{
         return (
             <li>
                 <p>{this.state.inputLabel}</p>
-                <input type='text' name={this.state.inputName} pattern={this.state.inputPattern} placeholder={this.state.inputPlaceHolder} />
+                <input type={this.state.inputName=="mail"? "email":"text"} name={this.state.inputName} pattern={this.state.inputPattern} placeholder={this.state.inputPlaceHolder} />
             </li>
         );
     }

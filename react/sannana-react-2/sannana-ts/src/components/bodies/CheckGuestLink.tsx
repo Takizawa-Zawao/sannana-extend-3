@@ -15,7 +15,7 @@ class CheckGuestLink extends React.Component<Props>{
             <p>
                 {this.explanation}
                 <form method="GET" action={this.nextURL}>
-                    <input className="btn button_link" type="submit" value="予約確認/追加/取消" />
+                    <input className="btn button_link" type="submit" value="ログイン" />
                 </form>
             </p>
         );

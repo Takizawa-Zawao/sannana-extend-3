@@ -28,11 +28,11 @@ class ReservationCheckBody extends React.Component<Props, State>{
                 {this.explanation}
                 <form action={this.nextURL} method="post">
                     <p>
-                        <input className="btn button_link" id="mail_form" type="button" onClick={this.buttonClick01} value="メールアドレスで確認" required />
+                        <input className="btn button_link" id="mail_form" type="button" onClick={this.buttonClick01} value="メールアドレスでログイン" required />
                     </p>
                     {this.state.additionalForm01}
                     <p>
-                        <input className="btn button_link" id="id_form" type="button" onClick={this.buttonClick02} value="予約番号で確認" required />
+                        <input className="btn button_link" id="id_form" type="button" onClick={this.buttonClick02} value="予約番号でログイン" required />
                     </p>
                     {this.state.additionalForm02}
                 </form>
