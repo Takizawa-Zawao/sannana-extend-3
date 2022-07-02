@@ -1,5 +1,6 @@
 import React from "react";
 import AdditionalForm from "../bodies/AdditionalForm";
+import "../../css/style.css"
 
 type Props = {
     explanation?: React.ReactNode
