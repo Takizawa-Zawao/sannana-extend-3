@@ -5,7 +5,9 @@ import Header_02 from "../headers/Header_02"
 import ReservedGuest, { PropsData } from "./ReservedGuest"
 import ReservedLeader, { LeaderProps, LeaderPropsData } from "./ReservedLeader"
 import useLambda, { AwsAPIResponse } from "../../ts/ajax"
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import Page404 from "../../errorPages/Page404"
+import GetParams from "../../ts/GetParams"
 
 type Props = {
 
@@ -19,21 +21,30 @@ type State = {
     }]
 }
 
-function GetGuestId(): string | undefined {
-    try {
-        const params = useParams<{ guestId: string }>();
-        return params.guestId;
-    } catch (e) {
-        alert(e)
-    }
-}
-
-
 const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
-    const guestId: string | undefined = useParams<{ guestId: string }>().guestId;
-    let URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
+    const params:Map<string, string> | null = GetParams();
+    let guestId: string | undefined = "";
+    let mail: string | undefined = "";
+
+    if(params === null){
+        return <Page404></Page404>
+    }else{
+        guestId = params.get("id_form");
+        mail = params.get("mail_form");
+    }
+
+
+    let URL = "";
+    if(guestId === undefined){
+        URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
+    }else if(mail === undefined){
+        URL = "/error";
+    }else{
+        URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
+    }
+    
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
     alert(awsAPIResponse);
 

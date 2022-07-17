@@ -7,6 +7,7 @@ type Props = {
 }
 
 type State = {
+    nextURL: string,
     additionalForm01: React.ReactNode,
     additionalForm02: React.ReactNode
 }
@@ -17,6 +18,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
     constructor(props: Props, state: State){
         super(props);
         this.state = {
+            nextURL: this.nextURL,
             additionalForm01: <div id='additionalForm01'></div>,
             additionalForm02: <div id='additionalForm02'></div>
         };
@@ -27,7 +29,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
         return (
             <div id='ReservationCheckBody'>
                 {this.explanation}
-                <form action={this.nextURL} method="post">
+                <form action={this.state.nextURL} method="post">
                     <p>
                         <input className="btn button_link" id="mail_form" type="button" onClick={this.buttonClick01} value="メールアドレスでログイン" required />
                     </p>
@@ -43,6 +45,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
     
     buttonClick01 = () => {
         this.setState({
+            nextURL: "/reservation_list/mail/",
             additionalForm01: this.createAdditionalForm("mail_form"),
             additionalForm02: <div></div>
         });
@@ -51,6 +54,7 @@ class ReservationCheckBody extends React.Component<Props, State>{
 
     buttonClick02 = () => {
         this.setState({
+            nextURL: "/reservation_list/id/",
             additionalForm01: <div></div>,
             additionalForm02: this.createAdditionalForm("id_form")
         });
