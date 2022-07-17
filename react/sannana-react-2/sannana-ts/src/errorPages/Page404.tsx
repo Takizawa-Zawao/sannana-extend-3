@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../logo.svg';
 
 class Page404 extends React.Component{
     render(){
