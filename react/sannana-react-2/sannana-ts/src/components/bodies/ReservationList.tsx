@@ -20,7 +20,7 @@ type State = {
 }
 
 function GetGuestId() :string | undefined {
-    const { guestId } = useParams();
+    const { guestId } = useParams<{guestId: string}>();
     return guestId;
 }
 
@@ -30,7 +30,6 @@ function UseLambda(URL: string): AwsAPIResponse{
 
 class ReservationList extends React.Component<Props, State>{
     constructor(props: Props){
-        alert("start");
         const guestId: string | undefined = GetGuestId();
         alert(guestId);
         super(props);
