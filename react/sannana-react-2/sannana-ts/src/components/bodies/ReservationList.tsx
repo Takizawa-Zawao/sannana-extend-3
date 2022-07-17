@@ -20,8 +20,8 @@ type State = {
 }
 
 function GetGuestId() :string | undefined {
-    const params = useParams<{guestId: string}>();
     alert("GetGuestId");
+    const params = useParams<{guestId: string}>();
     return params.guestId;
 }
 
