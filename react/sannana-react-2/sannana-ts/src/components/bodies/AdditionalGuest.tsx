@@ -5,7 +5,7 @@ import ActorsPulldown from './ActorsPulldown'
 type Props = {
     guestNumber: number,
     isLeader?: boolean
-    actorsList: Map<number, String>
+    actorsList: Map<string, String>
 }
 
 
