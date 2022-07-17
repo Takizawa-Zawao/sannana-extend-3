@@ -33,7 +33,7 @@ const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
     const guestId: string | undefined = useParams<{ guestId: string }>().guestId;
-    let URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?" + guestId;
+    let URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
     alert(awsAPIResponse);
 
