@@ -12,7 +12,7 @@ type State = {
 }
 
 class ReservationCheckBody extends React.Component<Props, State>{
-    nextURL: string = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check";
+    nextURL: string = "";
     explanation: React.ReactNode = this.props.explanation == undefined ? <p></p> : <p>{this.props.explanation}</p>;
     constructor(props: Props, state: State){
         super(props);
