@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<MainApp />} />
         <Route path='/top' element={<TopPage />} />
         <Route path='/reservation_check' element={<CheckReservation />} />
-        <Route path='/reservation_list?:guestId' element={<ReservationList />} />
+        <Route path='/reservation_list/:guestId' element={<ReservationList />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
     </BrowserRouter>
