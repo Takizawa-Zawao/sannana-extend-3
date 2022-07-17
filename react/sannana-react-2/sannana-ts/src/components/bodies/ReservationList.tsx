@@ -20,9 +20,12 @@ type State = {
 }
 
 function GetGuestId() :string | undefined {
-    alert("GetGuestId");
-    const params = useParams<{guestId: string}>();
-    return params.guestId;
+    try{
+        const params = useParams<{guestId: string}>();
+        return params.guestId;
+    }catch(e){
+        alert(e)
+    }
 }
 
 function UseLambda(URL: string): AwsAPIResponse{
