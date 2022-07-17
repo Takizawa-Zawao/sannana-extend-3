@@ -13,7 +13,7 @@ type Props = {
 type State = {
     createAccount: boolean
     availableList: Array<number>
-    actorsList: Map<number, string>
+    actorsList: Map<string, string>
 }
 
 
@@ -22,9 +22,9 @@ class ReservationBody extends React.Component<Props, State>{
         super(props);
         let awsAPIResponse =  useLambda("https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_edit_add");
         let body = awsAPIResponse["body-json"]["body"]
-        let actorsList:Map<number, string> = new Map();
+        let actorsList:Map<string, string> = new Map();
         for(let i = 0; i++; i < body["actorsList_keys"].size()){
-            actorsList.set(i, body["actorsList_values"]);
+            actorsList.set(i.toString(), body["actorsList_values"]);
         }
         this.state = {
             createAccount: body["createAccount"] == 1? true : false,
