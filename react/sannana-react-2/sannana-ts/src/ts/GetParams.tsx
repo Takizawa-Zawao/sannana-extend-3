@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 
 export default function GetParams(): Map<string, string> | null {
+
+    alert(useLocation().search);
+
     const location_slice = useLocation().search.split("?");
     if(location_slice.length <= 1){
         return null
@@ -11,6 +14,10 @@ export default function GetParams(): Map<string, string> | null {
             const paramSet = param.split("=");
             const key = paramSet[0];
             const value = paramSet[1];
+
+            alert(key);
+            alert(value);
+            
             paramMap.set(key, value);
         }
         return paramMap;
