@@ -28,17 +28,13 @@ function GetGuestId(): string | undefined {
     }
 }
 
-function UseLambda(URL: string): AwsAPIResponse {
-    return useLambda(URL);
-}
 
 const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
     const guestId: string | undefined = useParams<{ guestId: string }>().guestId;
-    alert(guestId);
-    let URL = "/reservation_list?" + guestId;
-    let awsAPIResponse: AwsAPIResponse = UseLambda(URL);
+    let URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?" + guestId;
+    let awsAPIResponse: AwsAPIResponse = useLambda(URL);
     alert(awsAPIResponse);
 
     const [leaderProps, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].leaderPropsData);
