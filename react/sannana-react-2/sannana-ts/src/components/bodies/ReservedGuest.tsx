@@ -85,22 +85,10 @@ export interface KeyLabels {
 class ReservedGuest extends React.Component<Props, State>{
     constructor(props: Props){
         super(props);
-        let keyCommon: KeyCommon = this.getKeyCommon();
-        let keyNames: string[] = this.getKeyNames();
-        let keyTypes: KeyTypes = this.getKeyTypes();
-        let keyLabels: KeyLabels = this.getKeyLabels();
-
+        
         let elements = {} as Elements
-        () => {
-            for(let keyName of keyNames){
-                elements[keyName] = {
-                    name: keyCommon[keyName] + this.props.data.guestNumber,
-                    value: this.props.data[keyName],
-                    type: keyTypes[keyName],
-                    label: keyLabels[keyName]
-                }
-            }
-        }
+        this.createElement(elements);
+
         this.state = {
             elements: elements,
             isHidden: this.props.isHidden,
@@ -112,6 +100,22 @@ class ReservedGuest extends React.Component<Props, State>{
         
     }
 
+    createElement(elements: Elements){
+        let keyCommon: KeyCommon = this.getKeyCommon();
+        let keyNames: string[] = this.getKeyNames();
+        let keyTypes: KeyTypes = this.getKeyTypes();
+        let keyLabels: KeyLabels = this.getKeyLabels();
+
+        for(let keyName of keyNames){
+            elements[keyName] = {
+                name: keyCommon[keyName] + this.props.data.guestNumber,
+                value: this.props.data[keyName],
+                type: keyTypes[keyName],
+                label: keyLabels[keyName]
+            }
+        }
+    }
+
     render(): React.ReactNode {
         let inputList: React.ReactNode[] = this.createComponent();
         let result = <div>{inputList}</div>
@@ -120,19 +124,22 @@ class ReservedGuest extends React.Component<Props, State>{
 
     createComponent(): React.ReactNode[] {
         let inputList: React.ReactNode[] = [];
-        let elements: Elements = this.state.elements();
-        let keyNames = this.getKeyNames();
-        () => {
-            for(let keyName of keyNames){
-                let element = elements[keyName];
-                let input = this.props.isHidden || element.type === "hidden"? <input type="hidden" name={element.name} value={element.value} /> : <input type={element.type} name={element.name} placeholder={element.value} />
-                let label = this.props.isHidden || element.type === "hidden"? input : <tr><th>{element.label}</th><td>{input}</td></tr>
-                inputList.push(label);
-            }
-        }
+        this.createChildComponent(inputList);
+
         let fullNameDisplay = this.props.isHidden? <tr><td>{this.state.fullName}</td></tr> : <div></div>
         inputList.push
         return inputList;
+    }
+
+    createChildComponent(inputList: React.ReactNode[]){
+        let elements: Elements = this.state.elements();
+        let keyNames = this.getKeyNames();
+        for(let keyName of keyNames){
+            let element = elements[keyName];
+            let input = this.props.isHidden || element.type === "hidden"? <input type="hidden" name={element.name} value={element.value} /> : <input type={element.type} name={element.name} placeholder={element.value} />
+            let label = this.props.isHidden || element.type === "hidden"? input : <tr><th>{element.label}</th><td>{input}</td></tr>
+            inputList.push(label);
+        }
     }
 
     getKeyNames(): string[]{

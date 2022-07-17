@@ -19,23 +19,27 @@ type State = {
     }]
 }
 
+function GetGuestId() :string | undefined {
+    const { guestId } = useParams();
+    return guestId;
+}
+
+function UseLambda(URL: string): AwsAPIResponse{
+    return useLambda(URL);
+}
+
 class ReservationList extends React.Component<Props, State>{
     constructor(props: Props){
-        const guestId = useParams<{guestId: string}>();
+        const guestId: string | undefined = GetGuestId();
         alert(guestId);
         super(props);
         let URL = "/reservation_list?" + guestId;
-        let awsAPIResponse: AwsAPIResponse = useLambda(URL);
+        let awsAPIResponse: AwsAPIResponse = UseLambda(URL);
         alert(awsAPIResponse);
     }
     render(){
         let list: React.ReactNode[] = [];
-        () => {
-            for(let prop of this.state.props){
-                let component = <ReservedGuest data={prop.data} isHidden={prop.isHidden} />
-                list.push(component);
-            }
-        }
+        this.createComponent(list);
 
         return(
             <div>
@@ -56,6 +60,13 @@ class ReservationList extends React.Component<Props, State>{
                 </form>
             </div>
         )
+    }
+
+    createComponent(list: React.ReactNode[]){
+        for(let prop of this.state.props){
+            let component = <ReservedGuest data={prop.data} isHidden={prop.isHidden} />
+            list.push(component);
+        }
     }
 }
 
