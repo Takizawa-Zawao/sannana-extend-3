@@ -29,7 +29,7 @@ const ReservationList = () => {
     let mail: string | undefined = "";
 
     if(params === null){
-        return <Page404></Page404>
+        
     }else{
         guestId = params.get("id_form");
         mail = params.get("mail_form");
