@@ -127,7 +127,7 @@ class ReservedGuest extends React.Component<Props, State>{
         this.createChildComponent(inputList);
 
         let fullNameDisplay = this.props.isHidden? <tr><td>{this.state.fullName}</td></tr> : <div></div>
-        inputList.push
+        inputList.push(fullNameDisplay);
         return inputList;
     }
 
