@@ -30,6 +30,7 @@ function UseLambda(URL: string): AwsAPIResponse{
 
 class ReservationList extends React.Component<Props, State>{
     constructor(props: Props){
+        alert("start");
         const guestId: string | undefined = GetGuestId();
         alert(guestId);
         super(props);
