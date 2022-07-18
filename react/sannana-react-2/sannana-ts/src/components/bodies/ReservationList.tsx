@@ -47,7 +47,7 @@ const ReservationList = () => {
 
 
     const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].leaderPropsData);
-    alert(leaderPropsData);
+    alert(useState(awsAPIResponse["body-json"]));
     alert(leaderPropsData.mail);
     
     const [propsData, setPropsData]:[PropsData[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
