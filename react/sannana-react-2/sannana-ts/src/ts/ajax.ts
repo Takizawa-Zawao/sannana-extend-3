@@ -12,7 +12,7 @@ function useLambda(URL: string):AwsAPIResponse {
             return json;
         }
     ).then(
-        () => {
+        (json: Promise<any>) => {
             console.log(json);
             return json;
         }
