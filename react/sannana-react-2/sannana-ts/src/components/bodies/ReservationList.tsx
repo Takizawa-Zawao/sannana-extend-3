@@ -22,40 +22,39 @@ type State = {
 const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
-    const params: Map<string, string> | null = GetParams();
+    const params:Map<string, string> | null = GetParams();
     let guestId: string | undefined = "";
     let mail: string | undefined = "";
 
-    if (params === null) {
-
-    } else {
+    if(params === null){
+        
+    }else{
         guestId = params.get("id_form");
         mail = params.get("mail_form");
     }
 
 
     let URL = "";
-    if (guestId === undefined) {
+    if(guestId === undefined){
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
-    } else if (mail === undefined) {
+    }else if(mail === undefined){
         URL = "/error";
-    } else {
+    }else{
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     }
-
+    
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
 
 
-    const [leaderProps, setLeaderPropsdata]: [LeaderPropsData, Dispatch<any>] = useState(awsAPIResponse["body-json"].leaderPropsData);
-    alert(leaderProps.fullname);
-    alert(leaderProps.mail);
+    const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].leaderPropsData);
+    alert(leaderPropsData);
+    alert(leaderPropsData.mail);
     
-    try {
-        const [props, setPropsData]: [Props[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
-        alert(props[0].data.fullname);
-
-        let list: React.ReactNode[] = [];
-        createComponent(list, props);
+    const [propsData, setPropsData]:[PropsData[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
+    alert(propsData[0].fullname);
+ 
+    let list: React.ReactNode[] = [];
+    createComponent(list, propsData, isHidden);
     
 
     return (
@@ -66,7 +65,7 @@ const ReservationList = () => {
             <p>代表者様情報</p>
             <form action="" method="GET">
                 <table>
-                    <ReservedLeader data={leaderProps} isHidden={isHidden} />
+                    <ReservedLeader data={leaderPropsData} isHidden={isHidden} />
                 </table>
             </form>
             <p>予約一覧</p>
@@ -77,14 +76,11 @@ const ReservationList = () => {
             </form>
         </div>
     )
-} catch (e) {
-    alert(e);
-}
 }
 
-function createComponent(list: React.ReactNode[], props: Props[]) {
+function createComponent(list: React.ReactNode[], props: PropsData[], isHidden: boolean) {
     for (let prop of props) {
-        let component = <ReservedGuest data={prop.data} isHidden={prop.isHidden} />
+        let component = <ReservedGuest data={prop} isHidden={isHidden} />
         list.push(component);
     }
 }
