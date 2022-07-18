@@ -46,11 +46,11 @@ const ReservationList = () => {
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
 
 
-    const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].leaderPropsData);
+    const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].body.leaderPropsData);
     alert(useState(awsAPIResponse["body-json"]));
     alert(leaderPropsData.mail);
     
-    const [propsData, setPropsData]:[PropsData[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
+    const [propsData, setPropsData]:[PropsData[], Dispatch<any>] = useState(awsAPIResponse["body-json"].body.propsData);
     alert(propsData[0].fullname);
  
     let list: React.ReactNode[] = [];
