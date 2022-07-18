@@ -11,6 +11,7 @@ function useLambda(URL: string):AwsAPIResponse {
         }
     ).catch(
         (error)=>{
+            alert(error);
             let json: AwsAPIResponse = {
                 "body-json": "error"
             }
