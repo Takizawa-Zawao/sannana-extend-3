@@ -2,6 +2,16 @@ import React from "react";
 import ReservedGuest, { data, Elements, KeyCommon, KeyLabels, KeyTypes, Props, PropsData, State } from "./ReservedGuest";
 
 export interface LeaderPropsData extends PropsData {
+    [key: string]: string
+    id: string,
+    id_sort: string,
+    lastName: string,
+    firstName: string,
+    fullname: string,
+    phonetic: string,
+    invitationId: string,
+    invitationId_sort: string,
+    guestNumber: string,
     mail: string
 }
 
@@ -26,7 +36,7 @@ export interface LeaderKeyLabels extends KeyLabels {
 }
 
 export default class ReservedLeader extends ReservedGuest{
-    constructor(props: Props){
+    constructor(props: LeaderProps){
         super(props);
 
     }
@@ -37,10 +47,17 @@ export default class ReservedLeader extends ReservedGuest{
         return result
     }
 
-    getKeyNames(): string[] {
-        let array = super.getKeyNames();
-        array.push("mail");
-        return array;
+    getKeyNames(): string[]{
+        return [
+            "id",
+            "id_sort",
+            "lastName",
+            "firstName",
+            "phonetic",
+            "invitationId",
+            "invitationId_sort",
+            "mail"
+        ]
     }
     getKeyCommon(): LeaderKeyCommon {
         return {
@@ -81,4 +98,6 @@ export default class ReservedLeader extends ReservedGuest{
             isMagician: "マジック経験"
         }
     }
+
+    
 }
