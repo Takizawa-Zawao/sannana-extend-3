@@ -6,7 +6,7 @@ export type AwsAPIResponse = {
 function useLambda(URL: string):AwsAPIResponse {
     fetch(URL).then(
         (response) =>{
-            alert("ok");
+            alert(response.text);
             let json = response.json();
             return json;
         }
