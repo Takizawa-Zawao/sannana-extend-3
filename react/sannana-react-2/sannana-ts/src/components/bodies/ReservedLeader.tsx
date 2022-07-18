@@ -2,16 +2,6 @@ import React from "react";
 import ReservedGuest, { data, Elements, KeyCommon, KeyLabels, KeyTypes, Props, PropsData, State } from "./ReservedGuest";
 
 export interface LeaderPropsData extends PropsData {
-    [key: string]: string
-    id: string,
-    id_sort: string,
-    lastName: string,
-    firstName: string,
-    fullname: string,
-    phonetic: string,
-    invitationId: string,
-    invitationId_sort: string,
-    guestNumber: string,
     mail: string
 }
 
