@@ -48,7 +48,7 @@ const ReservationList = () => {
 
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
 
-    alert(useState(awsAPIResponse["body-json"]));
+    alert(awsAPIResponse["body-json"]));
     const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].body.leaderPropsData);
     alert(leaderPropsData.mail);
     
