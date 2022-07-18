@@ -7,6 +7,7 @@ function useLambda(URL: string):AwsAPIResponse {
     fetch(URL).then(
         (response) =>{
             let json = response.json;
+            alert(json);
             return json;
         }
     ).catch(
