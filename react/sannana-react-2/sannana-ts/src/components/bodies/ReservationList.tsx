@@ -36,9 +36,11 @@ const ReservationList = () => {
 
     let URL = "";
     if(guestId === undefined){
-        URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
-    }else if(mail === undefined){
-        URL = "/error";
+        if(mail === undefined){
+            URL = "";
+        }else{
+            URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
+        }
     }else{
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     }
