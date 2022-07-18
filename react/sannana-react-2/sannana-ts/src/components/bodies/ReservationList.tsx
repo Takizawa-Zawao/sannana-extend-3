@@ -22,39 +22,40 @@ type State = {
 const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
-    const params:Map<string, string> | null = GetParams();
+    const params: Map<string, string> | null = GetParams();
     let guestId: string | undefined = "";
     let mail: string | undefined = "";
 
-    if(params === null){
-        
-    }else{
+    if (params === null) {
+
+    } else {
         guestId = params.get("id_form");
         mail = params.get("mail_form");
     }
 
 
     let URL = "";
-    if(guestId === undefined){
+    if (guestId === undefined) {
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
-    }else if(mail === undefined){
+    } else if (mail === undefined) {
         URL = "/error";
-    }else{
+    } else {
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     }
-    
+
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
 
 
-    const [leaderProps, setLeaderPropsdata]:[LeaderPropsData, Dispatch<any>] = useState(awsAPIResponse["body-json"].leaderPropsData);
+    const [leaderProps, setLeaderPropsdata]: [LeaderPropsData, Dispatch<any>] = useState(awsAPIResponse["body-json"].leaderPropsData);
     alert(leaderProps.fullname);
     alert(leaderProps.mail);
+    
+    try {
+        const [props, setPropsData]: [Props[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
+        alert(props[0].data.fullname);
 
-    const [props, setPropsData]:[Props[], Dispatch<any>] = useState(awsAPIResponse["body-json"].propsData);
-    alert(props[0].data.fullname);
-
-    let list: React.ReactNode[] = [];
-    createComponent(list, props);
+        let list: React.ReactNode[] = [];
+        createComponent(list, props);
     
 
     return (
@@ -76,6 +77,9 @@ const ReservationList = () => {
             </form>
         </div>
     )
+} catch (e) {
+    alert(e);
+}
 }
 
 function createComponent(list: React.ReactNode[], props: Props[]) {
