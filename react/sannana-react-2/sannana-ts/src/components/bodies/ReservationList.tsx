@@ -43,6 +43,12 @@ const ReservationList = () => {
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     }
     
+    try{
+        useLambda(URL);
+    }catch(e){
+        alert(e);
+    }
+
     let awsAPIResponse: AwsAPIResponse = useLambda(URL);
 
 
