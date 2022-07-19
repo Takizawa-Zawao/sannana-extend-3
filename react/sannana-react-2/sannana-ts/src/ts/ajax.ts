@@ -1,34 +1,32 @@
 import { json } from "stream/consumers";
 
-export type AwsAPIResponse = {
-    "body-json": any
+export interface ResponseBody  {
+    "body-json": {
+        body: {
+    }
+}
 }
 
 
-function useLambda(URL: string):AwsAPIResponse {
-    let promise = fetch(URL).then(
+
+function useLambda<T>(URL: string): Promise<T> {
+    let promise: Promise<T> = fetch(URL).then(
         (response) =>{
-            let json = response.json();
+            let json: Promise<T> = response.json();
             return json;
         }
     ).then(
-        (json: Promise<any>) => {
+        (json: T) => {
             console.log(json);
             return json;
         }
     ).catch(
-        (error)=>{
-            alert(error);
-            return {
-                "body-json": "error"
-            }
+        (error: T)=>{
+            return error;
         }
     );
-    
-        let falseJson: AwsAPIResponse = {
-            "body-json": "error"
-        }
-    return falseJson;
+
+    return promise;
 }
 
 

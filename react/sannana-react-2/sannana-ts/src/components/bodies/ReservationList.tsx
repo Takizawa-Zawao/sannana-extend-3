@@ -4,10 +4,8 @@ import Header_01 from "../headers/Header_01"
 import Header_02 from "../headers/Header_02"
 import ReservedGuest, { Props, PropsData } from "./ReservedGuest"
 import ReservedLeader, { LeaderProps, LeaderPropsData } from "./ReservedLeader"
-import useLambda, { AwsAPIResponse } from "../../ts/ajax"
-import { useLocation, useParams } from "react-router-dom";
-import Page404 from "../../errorPages/Page404"
 import GetParams from "../../ts/GetParams"
+import useLambda from "../../ts/ajax";
 
 
 
@@ -19,64 +17,80 @@ type State = {
     }]
 }
 
+type ResponseBody = {
+    "body-json": BodyJson
+}
+
+type BodyJson = {
+    body: {
+        leaderPropsData: LeaderPropsData,
+        propsData: PropsData[]
+    }
+}
+
 const ReservationList = () => {
     const [isHidden, setIsHidden] = useState(true);
 
-    const params:Map<string, string> | null = GetParams();
+    const params: Map<string, string> | null = GetParams();
     let guestId: string | undefined = "";
     let mail: string | undefined = "";
 
-    if(params === null){
-        
-    }else{
+    if (params === null) {
+
+    } else {
         guestId = params.get("id_form");
         mail = params.get("mail_form");
     }
 
 
     let URL = "";
-    if(guestId === undefined){
-        if(mail === undefined){
+    if (guestId === undefined) {
+        if (mail === undefined) {
             URL = "";
-        }else{
+        } else {
             URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?mail=" + mail;
         }
-    }else{
+    } else {
         URL = "https://cjz67ytgti.execute-api.ap-northeast-1.amazonaws.com/sannana_api_stage/reservation_check?guestId=" + guestId;
     }
-    
 
-    let awsAPIResponse: AwsAPIResponse = useLambda(URL);
+    let component = <div></div>
 
-    alert(awsAPIResponse["body-json"]);
-    const [leaderPropsData, setLeaderPropsdata] = useState(awsAPIResponse["body-json"].body.leaderPropsData);
-    alert(leaderPropsData.mail);
-    
-    const [propsData, setPropsData]:[PropsData[], Dispatch<any>] = useState(awsAPIResponse["body-json"].body.propsData);
-    alert(propsData[0].fullname);
- 
-    let list: React.ReactNode[] = [];
-    createComponent(list, propsData, isHidden);
-    
+
+    useLambda<ResponseBody>(URL).then(
+        (responseBody: ResponseBody) => {
+            (bodyJson: BodyJson) => {
+                const [leaderPropsData, setLeaderPropsData] = useState(bodyJson.body.leaderPropsData);
+                const [propsDataList, setPropsDataList] = useState(bodyJson.body.propsData);
+
+                let list: React.ReactNode[] = [];
+                createComponent(list, propsDataList, isHidden);
+
+                component = <div>
+                    <Head_01 PageTitle="サンナナ予約確認画面"></Head_01>
+                    <Header_01 PageSubTitle="予約確認画面"></Header_01>
+                    <Header_02></Header_02>
+                    <p>代表者様情報</p>
+                    <form action="" method="GET">
+                        <table>
+                            <ReservedLeader data={leaderPropsData} isHidden={isHidden} />
+                        </table>
+                    </form>
+                    <p>予約一覧</p>
+                    <form action="" method="GET">
+                        <table>
+                            {list}
+                        </table>
+                    </form>
+                </div>
+            }
+        }
+    );
+
+
 
     return (
-        <div>
-            <Head_01 PageTitle="サンナナ予約確認画面"></Head_01>
-            <Header_01 PageSubTitle="予約確認画面"></Header_01>
-            <Header_02></Header_02>
-            <p>代表者様情報</p>
-            <form action="" method="GET">
-                <table>
-                    <ReservedLeader data={leaderPropsData} isHidden={isHidden} />
-                </table>
-            </form>
-            <p>予約一覧</p>
-            <form action="" method="GET">
-                <table>
-                    {list}
-                </table>
-            </form>
-        </div>
+        component
     )
 }
 
